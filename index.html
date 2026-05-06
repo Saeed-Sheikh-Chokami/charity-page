@@ -340,7 +340,7 @@
       </header>
 
       <section class="donate-card" aria-label="Crypto Donations">
-        <h2 class="card-title">دریافت کمک مالی از طریق کریپتو</h2>
+        <h2 class="card-title">Receive financial aid through crypto</h2>
 
         <p class="crypto-note">
           <span class="arrow">
@@ -358,7 +358,7 @@
             </div>
             <div class="coin-address" id="btc-address">REPLACE_WITH_BTC_ADDRESS</div>
             <div class="actions">
-              <button class="copy-btn" data-copy="btc-address">کپی آدرس</button>
+              <button class="copy-btn" data-copy="btc-address">Copy of address</button>
             </div>
           </div>
 
@@ -370,7 +370,7 @@
             </div>
             <div class="coin-address" id="eth-address">REPLACE_WITH_ETH_ADDRESS</div>
             <div class="actions">
-              <button class="copy-btn" data-copy="eth-address">کپی آدرس</button>
+              <button class="copy-btn" data-copy="eth-address">Copy of address</button>
             </div>
           </div>
 
@@ -382,7 +382,7 @@
             </div>
             <div class="coin-address" id="ada-address">REPLACE_WITH_ADA_ADDRESS</div>
             <div class="actions">
-              <button class="copy-btn" data-copy="ada-address">کپی آدرس</button>
+              <button class="copy-btn" data-copy="ada-address">Copy of address</button>
             </div>
           </div>
 
@@ -394,7 +394,7 @@
             </div>
             <div class="coin-address" id="sol-address">REPLACE_WITH_SOL_ADDRESS</div>
             <div class="actions">
-              <button class="copy-btn" data-copy="sol-address">کپی آدرس</button>
+              <button class="copy-btn" data-copy="sol-address">Copy of address</button>
             </div>
           </div>
 
@@ -442,7 +442,7 @@
         try{
           await navigator.clipboard.writeText(text);
           const old = btn.textContent;
-          btn.textContent = "کپی شد ✅";
+          btn.textContent = "✅ The address was copied";
           setTimeout(() => btn.textContent = old, 1200);
         }catch(e){
           // Fallback
