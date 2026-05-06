@@ -406,7 +406,7 @@
             </div>
             <div class="coin-address" id="usdt-address">REPLACE_WITH_USDT_ADDRESS</div>
             <div class="actions">
-              <button class="copy-btn" data-copy="usdt-address">کپی آدرس</button>
+              <button class="copy-btn" data-copy="usdt-address">Copy of address</button>
             </div>
           </div>
         </div>
@@ -453,7 +453,7 @@
           try{
             document.execCommand('copy');
             const old = btn.textContent;
-            btn.textContent = "کپی شد ✅";
+            btn.textContent = "✅ The address was copied";
             setTimeout(() => btn.textContent = old, 1200);
           }finally{
             document.body.removeChild(ta);
