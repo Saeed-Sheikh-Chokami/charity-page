@@ -22,11 +22,14 @@
   <title>Safe Iran Aid</title>
 
   <style>
+    <style>
     :root{
       --bg:#ffffff;
-      --title-blue:#1f4bff;   /* تیتر آبی */
+      --title-blue:#015196;   /* تیتر آبی */
+      --title-red:#950404;   /* تیتر قرمز */
+      --title-black:#000000;   /* تیتر سیاه */
       --title-amber:#a35a00;   /* سرمه‌ای/قهوه‌ای تیره (برای تاکیدها) */
-      --desc-green:#0b8f2a;   /* توضیحات سبز پررنگ */
+      --desc-green:#057779;   /* توضیحات سبز پررنگ */
       --text:#132033;
       --muted:#5b6b85;
       --card:#f6f8ff;
@@ -143,6 +146,22 @@
       margin: 0 0 10px;
       text-align:center;
       color: var(--title-blue);
+      font-weight: 950;
+      font-size: clamp(18px, 2.4vw, 22px);
+    }
+
+    .card-details{
+      margin: 0 0 10px;
+      text-align:center;
+      color: var(--title-red);
+      font-weight: 950;
+      font-size: clamp(18px, 2.4vw, 22px);
+    }
+
+    .card-details-black{
+      margin: 0 0 10px;
+      text-align:center;
+      color: var(--title-black);
       font-weight: 950;
       font-size: clamp(18px, 2.4vw, 22px);
     }
