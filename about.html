@@ -1,0 +1,406 @@
+<!--
+  Modern Charity Landing Page (Responsive)
+  - White background
+  - Blue headings + title in deep blue
+  - Description text in bold green
+  - Center logo (you can replace with your PNG)
+  - Crypto donate card (replace addresses later)
+  - Menu bar items separated by "|"
+  - Multiple blank pages: Home, About, Wallet, Whitpaper (typo kept as you wrote)
+  
+  File structure پیشنهادی:
+  /index.html
+  /about.html
+  /wallet.html
+  /whitepaper.html   (یا whiterpaper.html مطابق سلیقه)
+  -->
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Safe Iran Aid</title>
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --title-blue:#1f4bff;   /* تیتر آبی */
+      --title-amber:#a35a00;   /* سرمه‌ای/قهوه‌ای تیره (برای تاکیدها) */
+      --desc-green:#0b8f2a;   /* توضیحات سبز پررنگ */
+      --text:#132033;
+      --muted:#5b6b85;
+      --card:#f6f8ff;
+      --border:#e6ebff;
+      --shadow: 0 14px 40px rgba(16, 42, 120, .12);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji";
+      line-height:1.7;
+    }
+
+    /* Backdrop subtle admin feel */
+    .page{
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding: clamp(16px, 3vw, 28px);
+      position:relative;
+      overflow:hidden;
+    }
+    .page::before{
+      content:"";
+      position:absolute;
+      inset:-200px -200px auto -200px;
+      height: 360px;
+      background: radial-gradient(circle at 20% 30%, rgba(31,75,255,.10), transparent 55%),
+                  radial-gradient(circle at 70% 10%, rgba(163,90,0,.10), transparent 50%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .container{
+      width: min(1060px, 100%);
+      position:relative;
+      z-index:1;
+    }
+
+    header{
+      text-align:center;
+      padding: 18px 0 8px;
+    }
+
+    /* Logo */
+    .logo-wrap{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin: 8px auto 12px;
+    }
+    .logo{
+      width: min(140px, 35vw);
+      height:auto;
+      display:block;
+      filter: drop-shadow(0 10px 20px rgba(31,75,255,.18));
+    }
+
+    h1{
+      margin: 8px 0 6px;
+      font-size: clamp(26px, 4vw, 44px);
+      letter-spacing:.2px;
+      color:var(--title-blue);
+      font-weight: 900;
+      text-transform: lowercase;
+    }
+
+    .subtitle{
+      margin: 0 auto 14px;
+      max-width: 56ch;
+      color: var(--desc-green);
+      font-weight: 800;
+      font-size: clamp(14px, 1.9vw, 18px);
+    }
+
+    /* Decorative line with pipe + double lines */
+    .divider{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 14px;
+      margin: 18px 0 22px;
+      color: var(--title-amber);
+    }
+    .divider .line{
+      height:1px;
+      background: linear-gradient(to right, transparent, rgba(163,90,0,.55), transparent);
+      flex: 1 1 120px;
+      max-width: 300px;
+    }
+    .divider .dotbar{
+      font-weight: 900;
+      color: var(--title-amber);
+      letter-spacing: 2px;
+      transform: translateY(-1px);
+    }
+
+    /* Donate section card */
+    .donate-card{
+      background: linear-gradient(180deg, rgba(31,75,255,.06), rgba(31,75,255,0)) , var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 3vw, 24px);
+      margin: 0 auto;
+    }
+
+    .card-title{
+      margin: 0 0 10px;
+      text-align:center;
+      color: var(--title-blue);
+      font-weight: 950;
+      font-size: clamp(18px, 2.4vw, 22px);
+    }
+
+    /* Crypto claim arrow */
+    .crypto-note{
+      margin: 0 0 14px;
+      text-align:center;
+      color: var(--desc-green);
+      font-weight: 850;
+    }
+    .arrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(11,143,42,.08);
+      border: 1px solid rgba(11,143,42,.18);
+    }
+    .arrow span{
+      color: var(--desc-green);
+      font-weight: 900;
+    }
+    .arrow .tri{
+      width:0;height:0;
+      border-top:10px solid transparent;
+      border-bottom:10px solid transparent;
+      border-left:16px solid var(--desc-green);
+      filter: drop-shadow(0 6px 12px rgba(11,143,42,.25));
+    }
+
+    /* Wallet grid */
+    .wallet-grid{
+      margin-top: 10px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+
+    .wallet-item{
+      grid-column: span 6;
+      border: 1px solid rgba(31,75,255,.14);
+      background: rgba(255,255,255,.75);
+      border-radius: 14px;
+      padding: 12px 12px 10px;
+      position:relative;
+      overflow:hidden;
+    }
+    .wallet-item::after{
+      content:"";
+      position:absolute;
+      inset:auto -40px -50px auto;
+      width:140px;height:140px;
+      background: radial-gradient(circle, rgba(31,75,255,.12), transparent 60%);
+      transform: rotate(10deg);
+      pointer-events:none;
+    }
+
+    .coin-label{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 8px;
+      position:relative;
+      z-index:1;
+    }
+    .coin-name{
+      font-weight: 950;
+      color: var(--title-blue);
+      font-size: 15px;
+    }
+    .badge{
+      color: var(--title-amber);
+      font-weight: 950;
+      font-size: 12px;
+      padding: 4px 10px;
+      border: 1px solid rgba(163,90,0,.22);
+      border-radius: 999px;
+      background: rgba(163,90,0,.06);
+      white-space:nowrap;
+    }
+
+    .coin-address{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12.5px;
+      color: #0f1a2c;
+      word-break: break-all;
+      background: rgba(19,32,51,.03);
+      border: 1px dashed rgba(31,75,255,.28);
+      border-radius: 12px;
+      padding: 10px 10px;
+      position:relative;
+      z-index:1;
+    }
+
+    .actions{
+      margin-top: 10px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:1;
+    }
+
+    button.copy-btn{
+      appearance:none;
+      border: 1px solid rgba(31,75,255,.22);
+      background: rgba(31,75,255,.06);
+      color: var(--title-blue);
+      font-weight: 900;
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease;
+    }
+    button.copy-btn:hover{
+      transform: translateY(-1px);
+      background: rgba(31,75,255,.10);
+    }
+    button.copy-btn:active{
+      transform: translateY(0px);
+    }
+
+    /* Menu bar */
+    nav{
+      margin: 22px auto 0;
+      text-align:center;
+    }
+
+    .menu{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      gap: 10px;
+      padding: 12px 10px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(246,248,255,.65);
+      border-radius: 14px;
+    }
+
+    .menu a{
+      color: var(--title-blue);
+      text-decoration:none;
+      font-weight: 900;
+      padding: 4px 2px;
+    }
+
+    .menu .sep{
+      color: rgba(91,107,133,.6);
+      font-weight: 900;
+      user-select:none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 720px){
+      .wallet-item{ grid-column: span 12; }
+      .divider .line{ max-width: 160px; }
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      color: var(--muted);
+      text-align:center;
+      font-size: 12.5px;
+      padding: 14px 0 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="container">
+
+      <header>
+        <div class="logo-wrap">
+          <!-- TODO: مسیر فایل PNG شما -->
+          <!-- مثال: <img class="logo" src="assets/logo.png" alt="Safe Iran Aid"> -->
+          <img class="logo" src="logo.png" alt="Safe Iran Aid logo">
+        </div>
+
+        <h1>safe iran aid</h1>
+        <p class="subtitle">Toghether For A Better Tomorrow</p>
+
+        <div class="divider" aria-hidden="true">
+          <div class="line"></div>
+          <div class="dotbar">| |</div>
+          <div class="line"></div>
+        </div>
+      </header>
+
+      <section class="donate-card" aria-label="Crypto Donations">
+        <h2 class="card-title">About Us At Safe Iran Aid</h2>
+
+        <h2 class="card-title">Here's a draft text:
+
+**About Us**
+
+At Safe Iran Aid, our mission is to provide humanitarian assistance to our fellow Iranians during times of crisis. We believe that every individual deserves access to basic necessities, and we're committed to delivering aid to those who need it most.
+
+**Our Focus**
+
+In response to the current challenges faced by our nation, we've established a cryptocurrency-based donation system to support our relief efforts. Your contributions will be used to provide essential items such as:
+
+* Clothing and warm clothing for vulnerable populations
+* Food and nutrition supplies for families in need
+* Medical aid and hygiene products
+
+**Our Goal**
+
+Our ultimate goal is to empower our communities to overcome difficulties they're facing and to ensure that Iran remains a resilient and thriving nation.
+
+**How You Can Help**
+
+We invite you to join us in this effort by making a donation in cryptocurrency. Your support will be instrumental in helping us deliver aid to those who need it most.
+
+**Transparency and Accountability**
+
+We're committed to transparency and accountability in our operations. We'll provide regular updates on our relief efforts and ensure that your donations are used effectively.
+
+**Join the Effort**
+
+Together, we can make a difference in the lives of our fellow Iranians. Donate now and help us bring hope and relief to those who need it most.
+
+**Donation Information**
+
+You can donate using [insert cryptocurrency names]. Please visit our [insert website or social media channels] for more information on how to donate.
+
+**Thank You**
+
+We're grateful for your support and generosity. Your contributions will have a direct impact on the lives of our fellow Iranians.
+
+Note: Please ensure that your donation complies with applicable laws and regulations.
+        </h2>
+
+        
+        <nav>
+          <div class="menu" role="navigation" aria-label="Main Menu">
+            <a href="index.html">Home</a>
+            <span class="sep">|</span>
+            <a href="about.html">About</a>
+            <span class="sep">|</span>
+            <a href="wallet.html">Wallet</a>
+            <span class="sep">|</span>
+            <a href="whitepaper.html">Whitpaper</a>
+          </div>
+        </nav>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Safe Iran Aid — All rights reserved.
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
